@@ -1,0 +1,47 @@
+## INTEL GALILEO GEN1 SERIAL COMMANDS
+
+# Install Required Packages
+
+sudo apt-get install setserial screen
+
+# List Serial Device
+
+lsusb
+
+Should show:
+
+Prolific Technology, Inc. PL2303 Serial Port / Mobile Action MA-8910P
+
+# Show Serial Device
+
+sudo dmesg | grep tty
+
+Should show:
+
+usb 1-4: pl2303 converter now attached to ttyUSB0
+
+# Show and Set Serial Device Info
+
+sudo setserial -g /dev/ttyUSB0
+
+sudo stty -F /dev/ttyUSB0 -a
+
+# Connect to Galileo via Screen
+
+Use a baud rate of 115200, 8 data bits, no parity, and 1 stop bit.
+
+sudo screen /dev/ttyUSB0 115200,cs8,-parenb,-cstopb
+
+Should prompt:
+
+Poky 9.0 (Yocto Project 1.4 Reference Distro) 1.4.1 clanton /dev/ttyS1
+
+clanton login: (LOGIN is "root")
+password: (PASSWORD is not set)
+
+
+To Exit Screen:
+Ctrl+a + Type "quit" + Hit Enter
+
+To Detach Screen:
+Ctrl+a + Ctrl+d
