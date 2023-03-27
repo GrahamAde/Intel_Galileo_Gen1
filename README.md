@@ -4,7 +4,7 @@ This repository outlines the capabilities of the Intel Galileo (First Generation
 
 ![IntelGalileoGen1Front](/images/Intel_Galileo_Gen1_Front.jpg?raw=true "Intel Galileo Gen1 Front")
 
-### Board Specifications
+## Board Specifications
 
 #### Processor: Intel Quark SoC X1000 application processor
 #### Clock Speed: 400 MHz
@@ -33,8 +33,14 @@ This repository outlines the capabilities of the Intel Galileo (First Generation
 #### Dimensions: 4.2 x 2.8 inches (approx. 10.7 x 7.1 cm)
 #### Power: 5V DC input (via barrel jack or header pin)
 
-### Table of Contents
+## Table of Contents
 
 - Update the board firmware
 - Compile new linux image
 - Log in to board using RS232 serial connection
+
+## Boot Process for SPI Image
+
+![PrebootScreen](/images/Intel_Galileo_Gen1_Preboot_Screen.jpg?raw=true "Preboot Screen")
+![SPIBootScreen](/images/Intel_Galileo_Gen1_SPI_Boot_Screen.jpg?raw=true "SPI Boot Screen")
+![SPIBootProcess](/images/Intel_Galileo_Gen1_SPI_Boot_Process.jpg?raw=true "SPI Boot Process")
