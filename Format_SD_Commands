@@ -1,0 +1,33 @@
+## FORMAT SD COMMANDS
+
+# Wipe Drive
+
+sudo shred -zvf -n 0 /dev/sdX
+
+# Create Partition
+
+sudo fdisk /dev/sdX
+
+- Press 'n' to add a new partition
+
+- Press 'p' for primary partition
+
+- Accept 'Default' value for "Partition Number", "First Sector", and "Last Sector"
+
+- Press 't' to change partition type
+
+- Press 'b' to select partition type "W95 FAT32"
+
+- Press 'w' to write partition to disk
+
+# Format Partition to FAT32
+
+sudo mkfs.vfat -F32 /dev/sdX1
+
+# Mount Partition
+
+sudo mount /dev/sdX1 /mnt
+
+# Copy Files to Disk
+
+sudo tar -xvf intel-iot-yocto-linux.tar.xz -C /mnt
