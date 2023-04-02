@@ -10,8 +10,7 @@ This repository outlines the capabilities of the Intel Galileo (First Generation
 - Clock Speed: 400 MHz
 - L1 Cache: 16 Kilobytes
 - Embedded SRAM: 512 Kilobytes on-die
-- Cores: 1
-- Threads: 1
+- Cores (Threads): 1 (1)
 - Architecture: i586, 32-bit Intel Pentium instruction set
 - Lithography: 32 nm
 - TDP: 12.5 Watts
@@ -49,7 +48,7 @@ This repository outlines the capabilities of the Intel Galileo (First Generation
 
 ## Boot Process for SPI Image (Firmware Version 732)
 
-Notes: This early firmware version does not support booting off SD cards.  You must update to a later firmware version to enable SD card booting functionality.
+**Notes:** This early firmware version does not support booting off SD cards.  You must update to a later firmware version to enable SD card booting functionality.
 
 ![PrebootScreen](/images/Intel_Galileo_Gen1_Preboot_Screen.jpg?raw=true "Preboot Screen")
 ![SPIBootScreenFV732](/images/Intel_Galileo_Gen1_SPI_Boot_Screen_FV732.jpg?raw=true "SPI Boot Screen Firmware Version 732")
@@ -57,7 +56,7 @@ Notes: This early firmware version does not support booting off SD cards.  You m
 
 ## Boot Process for SPI Image (Firmware Version 1.1.0)
 
-Notes: This is the last firmware version released by Intel for the Galileo Gen 1.  The "Intel Galileo Firmware Updater and Drivers (Gen 1 & 2)" directory in this repository contains the software which will updated the board to firmware version 1.1.0.
+**Notes:** This is the last firmware version released by Intel for the Galileo Gen 1.  The "Intel Galileo Firmware Updater and Drivers (Gen 1 & 2)" directory in this repository contains the software which will update the board to firmware version 1.1.0.
 
 ![PrebootScreen](/images/Intel_Galileo_Gen1_Preboot_Screen.jpg?raw=true "Preboot Screen")
 ![SPIBootScreenFV110](/images/Intel_Galileo_Gen1_SPI_Boot_Screen_FV110.jpg?raw=true "SPI Boot Screen Firmware Version 1.1.0")
