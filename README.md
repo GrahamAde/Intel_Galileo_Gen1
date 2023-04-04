@@ -40,11 +40,24 @@ This repository outlines the capabilities of the Intel Galileo (First Generation
 #### Input Power: 5V DC input (via barrel jack or header pin)
 #### Operating Voltage: 3.3V
 
+***
+
 ## Table of Contents
 
-- Update the board firmware
-- Compile new linux image
-- Log in to board using RS232 serial connection
+- How to Update Board Firmware
+- Boot Process for SPI Image (Firmware Version 732)
+- Boot Process for SPI Image (Firmware Version 1.1.0)
+- Boot Process for SD Card Image (Firmware Version 1.1.0)
+- Running Debian on Intel Galileo
+- Connecting to Board via RS232 Serial Cable
+
+***
+
+## How to Update Board Firmware
+
+
+
+***
 
 ## Boot Process for SPI Image (Firmware Version 732)
 
@@ -275,14 +288,39 @@ Poky 9.0 (Yocto Project 1.4 Reference Distro) 1.4.1 clanton /dev/ttyS1
 clanton login:
 ```
 
+***
+
 ## Boot Process for SPI Image (Firmware Version 1.1.0)
 
 **Notes:** This is the last firmware version released by Intel for the Galileo Gen 1.  The "Intel Galileo Firmware Updater and Drivers (Gen 1 & 2)" directory in this repository contains the software which will update the board to firmware version 1.1.0.
 
+#### Preboot Screen
 ![PrebootScreen](/images/Intel_Galileo_Gen1_Preboot_Screen.jpg?raw=true "Preboot Screen")
+
+#### Boot Screen
 ![SPIBootScreenFV110](/images/Intel_Galileo_Gen1_SPI_Boot_Screen_FV110.jpg?raw=true "SPI Boot Screen Firmware Version 1.1.0")
-![SPIBootLogFV110](/images/Intel_Galileo_Gen1_SPI_Boot_Log_FV110.jpg?raw=true "SPI Boot Log Firmware Version 1.1.0")
+
+#### Boot Log
+[Image for 'SPI Boot Log Firmware Version 1.1.0](/images/Intel_Galileo_Gen1_SPI_Boot_Log_FV110.jpg)
+
+```
+
+```
+
+***
 
 ## Boot Process for SD Card Image (Firmware Version 1.1.0)
 
 
+#### Preboot Screen
+![PrebootScreen](/images/Intel_Galileo_Gen1_Preboot_Screen.jpg?raw=true "Preboot Screen")
+
+#### Boot Screen
+![SDBootScreenFV110](/images/Intel_Galileo_Gen1_SD_Boot_Screen_FV110.jpg?raw=true "SD Boot Screen Firmware Version 1.1.0")
+
+#### Boot Log
+[Image for 'SD Boot Log Firmware Version 1.1.0](/images/Intel_Galileo_Gen1_SD_Boot_Log_FV110.jpg)
+
+```
+
+```
