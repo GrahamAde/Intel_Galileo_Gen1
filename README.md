@@ -53,16 +53,16 @@ This repository outlines the capabilities of the Intel Galileo (First Generation
 
 ***
 
-<a id="Update-Firmware">
-## How to Update Board Firmware
-</a>
+<h2 id="Update-Firmware">
+How to Update Board Firmware
+</h2>
 
 
 ***
 
-<a id="Boot-SPI-FV732">
-## Boot Process for SPI Image (Firmware Version 732)
-</a>
+<h2 id="Boot-SPI-FV732">
+Boot Process for SPI Image (Firmware Version 732)
+</h2>
 
 **Notes:** This early firmware version does not support booting off SD cards.  You must update to a later firmware version to enable SD card booting functionality.
 
@@ -293,9 +293,9 @@ clanton login:
 
 ***
 
-<a id="Boot-SPI-FV110">
-## Boot Process for SPI Image (Firmware Version 1.1.0)
-</a>
+<h2 id="Boot-SPI-FV110">
+Boot Process for SPI Image (Firmware Version 1.1.0)
+</h2>
 
 **Notes:** This is the last firmware version released by Intel for the Galileo Gen 1.  The "Intel Galileo Firmware Updater and Drivers (Gen 1 & 2)" directory in this repository contains the software which will update the board to firmware version 1.1.0.
 
@@ -798,9 +798,9 @@ clanton login:
 
 ***
 
-<a id="Boot-SD-FV110">
-## Boot Process for SD Card Image (Firmware Version 1.1.0)
-</a>
+<h2 id="Boot-SD-FV110">
+Boot Process for SD Card Image (Firmware Version 1.1.0)
+</h2>
 
 #### Preboot Screen
 ![PrebootScreen](/images/Intel_Galileo_Gen1_Preboot_Screen.jpg?raw=true "Preboot Screen")
