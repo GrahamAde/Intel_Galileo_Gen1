@@ -52,7 +52,11 @@ This repository outlines the capabilities of the Intel Galileo (First Generation
 
 ![PrebootScreen](/images/Intel_Galileo_Gen1_Preboot_Screen.jpg?raw=true "Preboot Screen")
 ![SPIBootScreenFV732](/images/Intel_Galileo_Gen1_SPI_Boot_Screen_FV732.jpg?raw=true "SPI Boot Screen Firmware Version 732")
-![SPIBootProcessFV732](/images/Intel_Galileo_Gen1_SPI_Boot_Process_FV732.jpg?raw=true "SPI Boot Process Firmware Version 732")
+[SPI Boot Log Firmware Version 732](/images/Intel_Galileo_Gen1_SPI_Boot_Log_FV732.jpg)
+
+'''
+
+'''
 
 ## Boot Process for SPI Image (Firmware Version 1.1.0)
 
@@ -60,7 +64,7 @@ This repository outlines the capabilities of the Intel Galileo (First Generation
 
 ![PrebootScreen](/images/Intel_Galileo_Gen1_Preboot_Screen.jpg?raw=true "Preboot Screen")
 ![SPIBootScreenFV110](/images/Intel_Galileo_Gen1_SPI_Boot_Screen_FV110.jpg?raw=true "SPI Boot Screen Firmware Version 1.1.0")
-![SPIBootProcessFV110](/images/Intel_Galileo_Gen1_SPI_Boot_Process_FV110.jpg?raw=true "SPI Boot Process Firmware Version 1.1.0")
+![SPIBootLogFV110](/images/Intel_Galileo_Gen1_SPI_Boot_Log_FV110.jpg?raw=true "SPI Boot Log Firmware Version 1.1.0")
 
 ## Boot Process for SD Card Image (Firmware Version 1.1.0)
 
