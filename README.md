@@ -304,7 +304,491 @@ clanton login:
 [Image for 'SPI Boot Log Firmware Version 1.1.0](/images/Intel_Galileo_Gen1_SPI_Boot_Log_FV110.jpg)
 
 ```
+Found layout.conf @ 0xffcff000 len 0x00000bf3
 
+# WARNING: this file is indirectly included in a Makefile where it
+# defines Make targets and pre-requisites. As a consequence you MUST
+# run "make clean" BEFORE making changes to it. Failure to do so may
+# result in the make process being unable to clean files it no longer
+# has references to.
+
+[main]
+size=8388608
+type=global
+
+
+[MFH]
+version=0x1
+flags=0x0
+address=0xfff08000
+type=mfh
+
+
+[Flash Image Version]
+type=mfh.version
+meta=version
+value=0x01010000
+
+[ROM_OVERLAY]
+address=0xfffe0000
+item_file=../../Quark_EDKII/Build/QuarkPlatform/RELEASE_GCC/FV/FlashModules/EDKII_BOOTROM_OVERRIDE.Fv
+type=some_type
+
+[signed-key-modules]
+address=0xfffd8000
+item_file=config/SvpSignedKeyModule.bin
+svn_index=0
+type=some_type
+in_capsule=no
+
+# On a deployed system, the SVN area holds the last known secure
+# version of each signed asset.
+# TODO: generate this area by collecting the SVN from the assets
+# themselves.
+[svn-area]
+address=0xfffd0000
+item_file=config/SVNArea.bin
+type=some_type
+# A capsule upgrade must implement some smart logic to make sure the
+# highest Security Version Number always wins (rollback protection)
+in_capsule=no
+
+[fixed_recovery_image]
+address=0xfff90000
+item_file=../../Quark_EDKII/Build/QuarkPlatform/RELEASE_GCC/FV/FlashModules/EDKII_RECOVERY_IMAGE1.Fv
+sign=yes
+type=mfh.host_fw_stage1_signed
+svn_index=2
+# in_capsule=no
+
+[NV_Storage]
+address=0xfff30000
+item_file=../../Quark_EDKII/Build/QuarkPlatform/RELEASE_GCC/FV/FlashModules/EDKII_NVRAM.bin
+type=some_type
+
+[RMU]
+address=0xfff00000
+item_file=../../Quark_EDKII/Build?QuarkPlatform/RELEASE_GCC/FV/FlashModules/RMU.bin
+type=none_registered
+
+[boot_stage1_image1]
+address=0xffec0000
+item_file=../../Quark_EDKII/Build/QuarkPlatform/RELEASE_GCC/FV/FlashModules/EDKII_BOOT_STAGE1_IMAGE1.Fv
+sign=yes
+boot_index=0
+type=mfh.host_fw_stage1_signed
+svn_index=1
+
+[boot_stage1_image2]
+address=0xffe80000
+item_file=../../Quark_EDKII/Build/QuarkPlatform/RELEASE_GCC/FV/FlashModules/EDKII_BOOT_STAGE1_IMAGE2.Fv
+sign=yes
+boot_index=1
+type=mfh.host_fv_stage1_signed
+svn_index=1
+
+[boot_stage_2_compact]
+address=0xffd00000
+item_file=../../Quark_EDKII/Build/QuarkPlatform/RELEASE_GCC/FV/FlashModules/EDKII_BOOT_STAGE2_COMPACT.Fv
+sign=yes
+type=mfh.host_fw_stage2_signed
+svn_index=3
+
+[Ramdisk]
+address=0xffa60000
+item_file=../../meta-clanton/yocto_build/tmp/deploy/images/image-spi-galileo-clanton.cpio.lzma
+sign=yes
+type=mfh.ramdisk_signed
+svn_index=7
+
+[LAYOUT.CONF_DUMP]
+address=0xffcff000
+type=mfh.build_information
+meta=layout
+
+[Kernel]
+address=0xff852000
+item_file=../../meta-clanton/yocto_build/tmp/deploy/images/bzImage
+sign=yes
+type=mfh.kernel_signed
+svn_index=6
+
+[grub.conf]
+address=0xff851000
+item_file=grub/grub-spi.conf
+sign=yes
+type=mfh.bootloader_conf_signed
+svn_index=5
+
+[grub]
+address=0xff800000
+item_file=../../meta-calnton/yocto_build/tmp/deploy/images/grub.efi
+sign=yes
+fvwrap=yes
+guid=B43BD3E1-64D1-4744-9394-D0E1C4DE8C87
+type=mfh.bootloader_signed
+svn_index=4
+
+
+[Linux-EFI SPI, setup=0x107f, size=0x1e0ac0]
+[Initrd SPI, addr=0xdb5e000, size=0x299854]
+[   0.000000] Initializing cgroup subsys cpuset
+[   0.000000] Initializing cgroup subsys cpu
+[   0.000000] Linux version 3.8.7-yocto-standard (calvin@U12) (gcc version 4.7.2 (GCC) ) #1 Mon Oct 31 14:39:35 PDT 2016
+[   0.000000] Disabling PGE capability bit
+[   0.000000] e820: BIOS-provided physical RAM map:
+[   0.000000] BIOS-e820: [mem 0x0000000000000000-0x0000000000096fff] usable
+[   0.000000] BIOS-e820: [mem 0x0000000000097000-0x0000000000097fff] reserved
+[   0.000000] BIOS-e820: [mem 0x0000000000098000-0x000000000009ffff] usable
+[   0.000000] BIOS-e820: [mem 0x0000000000100000-0x000000000efdefff] usable
+[   0.000000] BIOS-e820: [mem 0x000000000efdf000-0x000000000f01efff] ACPI data
+[   0.000000] BIOS-e820: [mem 0x000000000f01f000-0x000000000f0defff] reserved
+[   0.000000] BIOS-e820: [mem 0x000000000f0df000-0x000000000fddefff] ACPI NVS
+[   0.000000] BIOS-e820: [mem 0x000000000fddf000-0x000000000fdeefff] reserved
+[   0.000000] BIOS-e820: [mem 0x000000000fdef000-0x000000000fdeffff] usable
+[   0.000000] BIOS-e820: [mem 0x00000000e0000000-0x00000000e1ffffff] reserved
+[   0.000000] BIOS-e820: [mem 0x00000000fed1c000-0x00000000fed1ffff] reserved
+[   0.000000] Early serial console at MMIO32 0x9000b000 (options '115200n8')
+[   0.000000] bootconsole [uart0] enabled
+[   0.000000] NX (Execute Disable) protection: active
+[   0.000000] efi: EFI v2.31 by EKI
+[   0.000000] efi:  SMBIOS=0xfdee000  ACPI=0xf01e000  ACPI 2.0=0xf01e014
+[   0.000000] efi: mem00: type=7, attr=0xf, range=[0x0000000000000000-0x0000000000095000) (0MB)
+[   0.000000] efi: mem01: type=2, attr=0xf, range=[0x0000000000095000-0x0000000000097000) (0MB)
+[   0.000000] efi: mem02: type=0, attr=0xf, range=[0x0000000000097000-0x0000000000098000) (0MB)
+[   0.000000] efi: mem03: type=7, attr=0xf, range=[0x0000000000098000-0x00000000000a0000) (0MB)
+[   0.000000] efi: mem04: type=2, attr=0xf, range=[0x0000000000100000-0x00000000002e1000) (1MB)
+[   0.000000] efi: mem05: type=7, attr=0xf, range=[0x00000000002e1000-0x0000000001fde000) (28MB)
+[   0.000000] efi: mem06: type=4, attr=0xf, range=[0x0000000001fde000-0x0000000002000000) (0MB)
+[   0.000000] efi: mem07: type=7, attr=0xf, range=[0x0000000002000000-0x000000000bfe0000) (159MB)
+[   0.000000] efi: mem08: type=4, attr=0xf, range=[0x000000000bfe0000-0x000000000c000000) (0MB)
+[   0.000000] efi: mem09: type=7, attr=0xf, range=[0x000000000c000000-0x000000000db5e000) (27MB)
+[   0.000000] efi: mem10: type=2, attr=0xf, range=[0x000000000db5e000-0x000000000e1f8000) (6MB)
+[   0.000000] efi: mem11: type=4, attr=0xf, range=[0x000000000e1f8000-0x000000000e23d000) (0MB)
+[   0.000000] efi: mem12: type=2, attr=0xf, range=[0x000000000e23d000-0x000000000e240000) (0MB)
+[   0.000000] efi: mem13: type=1, attr=0xf, range=[0x000000000e240000-0x000000000e282000) (0MB)
+[   0.000000] efi: mem14: type=4, attr=0xf, range=[0x000000000e282000-0x000000000e28b000) (0MB)
+[   0.000000] efi: mem15: type=3, attr=0xf, range=[0x000000000e28b000-0x000000000e28f000) (0MB)
+[   0.000000] efi: mem16: type=4, attr=0xf, range=[0x000000000e28f000-0x000000000e293000) (0MB)
+[   0.000000] efi: mem17: type=3, attr=0xf, range=[0x000000000e293000-0x000000000e296000) (0MB)
+[   0.000000] efi: mem18: type=4, attr=0xf, range=[0x000000000e296000-0x000000000e2f0000) (0MB)
+[   0.000000] efi: mem19: type=3, attr=0xf, range=[0x000000000e2f0000-0x000000000e2fd000) (0MB)
+[   0.000000] efi: mem20: type=4, attr=0xf, range=[0x000000000e2fd000-0x000000000e300000) (0MB)
+[   0.000000] efi: mem21: type=3, attr=0xf, range=[0x000000000e300000-0x000000000e302000) (0MB)
+[   0.000000] efi: mem22: type=4, attr=0xf, range=[0x000000000e302000-0x000000000e303000) (0MB)
+[   0.000000] efi: mem23: type=3, attr=0xf, range=[0x000000000e303000-0x000000000e308000) (0MB)
+[   0.000000] efi: mem24: type=4, attr=0xf, range=[0x000000000e308000-0x000000000e309000) (0MB)
+[   0.000000] efi: mem25: type=3, attr=0xf, range=[0x000000000e309000-0x000000000e30f000) (0MB)
+[   0.000000] efi: mem26: type=4, attr=0xf, range=[0x000000000e30f000-0x000000000e310000) (0MB)
+[   0.000000] efi: mem27: type=3, attr=0xf, range=[0x000000000e310000-0x000000000e31e000) (0MB)
+[   0.000000] efi: mem28: type=4, attr=0xf, range=[0x000000000e31e000-0x000000000e31f000) (0MB)
+[   0.000000] efi: mem29: type=3, attr=0xf, range=[0x000000000e31f000-0x000000000e321000) (0MB)
+[   0.000000] efi: mem30: type=4, attr=0xf, range=[0x000000000e321000-0x000000000e322000) (0MB)
+[   0.000000] efi: mem31: type=3, attr=0xf, range=[0x000000000e322000-0x000000000e354000) (0MB)
+[   0.000000] efi: mem32: type=4, attr=0xf, range=[0x000000000e354000-0x000000000e358000) (0MB)
+[   0.000000] efi: mem33: type=3, attr=0xf, range=[0x000000000e358000-0x000000000e35b000) (0MB)
+[   0.000000] efi: mem34: type=4, attr=0xf, range=[0x000000000e35b000-0x000000000e36e000) (0MB)
+[   0.000000] efi: mem35: type=3, attr=0xf, range=[0x000000000e36e000-0x000000000e377000) (0MB)
+[   0.000000] efi: mem36: type=4, attr=0xf, range=[0x000000000e377000-0x000000000e378000) (0MB)
+[   0.000000] efi: mem37: type=3, attr=0xf, range=[0x000000000e378000-0x000000000e381000) (0MB)
+[   0.000000] efi: mem38: type=4, attr=0xf, range=[0x000000000e381000-0x000000000e383000) (0MB)
+[   0.000000] efi: mem39: type=3, attr=0xf, range=[0x000000000e383000-0x000000000e39c000) (0MB)
+[   0.000000] efi: mem40: type=4, attr=0xf, range=[0x000000000e39c000-0x000000000e3b5000) (0MB)
+[   0.000000] efi: mem41: type=3, attr=0xf, range=[0x000000000e3b5000-0x000000000e3c2000) (0MB)
+[   0.000000] efi: mem42: type=4, attr=0xf, range=[0x000000000e3c2000-0x000000000e412000) (0MB)
+[   0.000000] efi: mem43: type=3, attr=0xf, range=[0x000000000e412000-0x000000000e415000) (0MB)
+[   0.000000] efi: mem44: type=4, attr=0xf, range=[0x000000000e415000-0x000000000e418000) (0MB)
+[   0.000000] efi: mem45: type=3, attr=0xf, range=[0x000000000e418000-0x000000000e431000) (0MB)
+[   0.000000] efi: mem46: type=4, attr=0xf, range=[0x000000000e431000-0x000000000e437000) (0MB)
+[   0.000000] efi: mem47: type=3, attr=0xf, range=[0x000000000e437000-0x000000000e43f000) (0MB)
+[   0.000000] efi: mem48: type=4, attr=0xf, range=[0x000000000e43f000-0x000000000e5a0000) (1MB)
+[   0.000000] efi: mem49: type=3, attr=0xf, range=[0x000000000e5a0000-0x000000000e5b5000) (0MB)
+[   0.000000] efi: mem50: type=4, attr=0xf, range=[0x000000000e5b5000-0x000000000e802000) (2MB)
+[   0.000000] efi: mem51: type=3, attr=0xf, range=[0x000000000e802000-0x000000000e807000) (0MB)
+[   0.000000] efi: mem52: type=4, attr=0xf, range=[0x000000000e807000-0x000000000e80a000) (0MB)
+[   0.000000] efi: mem53: type=3, attr=0xf, range=[0x000000000e80a000-0x000000000e80e000) (0MB)
+[   0.000000] efi: mem54: type=4, attr=0xf, range=[0x000000000e80e000-0x000000000e80f000) (0MB)
+[   0.000000] efi: mem55: type=3, attr=0xf, range=[0x000000000e80f000-0x000000000e829000) (0MB)
+[   0.000000] efi: mem56: type=4, attr=0xf, range=[0x000000000e829000-0x000000000e82a000) (0MB)
+[   0.000000] efi: mem57: type=3, attr=0xf, range=[0x000000000e82a000-0x000000000e82c000) (0MB)
+[   0.000000] efi: mem58: type=4, attr=0xf, range=[0x000000000e82c000-0x000000000e82e000) (0MB)
+[   0.000000] efi: mem59: type=3, attr=0xf, range=[0x000000000e82e000-0x000000000e834000) (0MB)
+[   0.000000] efi: mem60: type=4, attr=0xf, range=[0x000000000e834000-0x000000000e84e000) (0MB)
+[   0.000000] efi: mem61: type=3, attr=0xf, range=[0x000000000e84e000-0x000000000e858000) (0MB)
+[   0.000000] efi: mem62: type=4, attr=0xf, range=[0x000000000e858000-0x000000000e859000) (0MB)
+[   0.000000] efi: mem63: type=3, attr=0xf, range=[0x000000000e859000-0x000000000e866000) (0MB)
+[   0.000000] efi: mem64: type=4, attr=0xf, range=[0x000000000e866000-0x000000000e878000) (0MB)
+[   0.000000] efi: mem65: type=3, attr=0xf, range=[0x000000000e878000-0x000000000e87a000) (0MB)
+[   0.000000] efi: mem66: type=4, attr=0xf, range=[0x000000000e87a000-0x000000000e882000) (0MB)
+[   0.000000] efi: mem67: type=3, attr=0xf, range=[0x000000000e882000-0x000000000e888000) (0MB)
+[   0.000000] efi: mem68: type=4, attr=0xf, range=[0x000000000e888000-0x000000000e88f000) (0MB)
+[   0.000000] efi: mem69: type=3, attr=0xf, range=[0x000000000e88f000-0x000000000e894000) (0MB)
+[   0.000000] efi: mem70: type=4, attr=0xf, range=[0x000000000e894000-0x000000000efdf000) (7MB)
+[   0.000000] efi: mem71: type=9, attr=0xf, range=[0x000000000efdf000-0x000000000f01f000) (0MB)
+[   0.000000] efi: mem72: type=5, attr=0x800000000000000f, range=[0x000000000f01f000-0x000000000f07f000) (0MB)
+[   0.000000] efi: mem73: type=6, attr=0x800000000000000f, range=[0x000000000f07f000-0x000000000f0df000) (0MB)
+[   0.000000] efi: mem74: type=10, attr=0xf, range=[0x000000000f0df000-0x000000000fddf000) (13MB)
+[   0.000000] efi: mem75: type=0, attr=0xf, range=[0x000000000fddf000-0x000000000fdef000) (0MB)
+[   0.000000] efi: mem76: type=4, attr=0xf, range=[0x000000000fdef000-0x000000000fdf0000) (0MB)
+[   0.000000] efi: mem77: type=11, attr=0x8000000000000000, range=[0x00000000e0000000-0x00000000e2000000) (32MB)
+[   0.000000] efi: mem78: type=11, attr=0x8000000000000000, range=[0x00000000fed1c000-0x00000000fed20000) (0MB)
+[   0.000000] SMBIOS 2.7 present.
+[   0.000000] e820: last_pfn = 0xfdf0 max_arch_pfn = 0x1000000
+[   0.000000] Scan for SMP in [mem 0x00000000-0x000003ff]
+[   0.000000] Scan for SMP in [mem 0x0009fc00-0x0009ffff]
+[   0.000000] Scan for SMP in [mem 0x000f0000-0x000fffff]
+[   0.000000] Scan for SMP in [mem 0x000aaaa0-0x000aae9f]
+[   0.000000] init_memory_mapping: [mem 0x00000000-0x0fdeffff]
+[   0.000000] RAMDISK: [mem 0x0db5e000-0x0ddf7fff]
+[   0.000000] ACPI: RSDP 0f01e014 00024 (v02 INTEL )
+[   0.000000] ACPI: XSDT 0f01d0e8 0006C (v01 INTEL  TIANO    00000004      01000013)
+[   0.000000] ACPI: FACP 0f01b000 000F4 (v03 INTEL  TIANO    00000004 INTL 0100000D)
+[   0.000000] ACPI: DSDT 0f012000 02401 (v01 INTEL  QuarkNcS 00000003 INTL 20140424)
+[   0.000000] ACPI: FACS 0f1c7000 00040
+[   0.000000] ACPI: UEFI 0fbd5000 00042 (v01                 00000000      00000000)
+[   0.000000] ACPI: APIC 0f01c000 0005A (v01 INTEL  TIANO    00000001 MSFT 00000000)
+[   0.000000] ACPI: HPET 0f01a000 00038 (v01                 00000001      00000000)
+[   0.000000] ACPI: MCFG 0f019000 0003C (v01                 00000001      00000000)
+[   0.000000] ACPI: SSDT 0f018000 004D8 (v01 SsgPmm  Cpu0Cst 00000011 INTL 20140424)
+[   0.000000] ACPI: SSDT 0f017000 0043F (v01 SsgPmm  Cpu0Ist 00000012 INTL 20140424)
+[   0.000000] ACPI: SSDT 0f016000 0013B (v01 SsgPmm  Cpu0Tst 00000013 INTL 20140424)
+[   0.000000] ACPI: SSDT 0f015000 00056 (v01 SsgPmm    CpuPm 00000010 INTL 20140424)
+[   0.000000] mapped APIC to         ffffb000 (        fee00000)
+[   0.000000] 0MB HIGHMEM available.
+[   0.000000] 253MB LOWMEM available.
+[   0.000000]   mapped low ram: 0 - 0fdf0000
+[   0.000000]   low ram: 0 - 0fdf0000
+[   0.000000] Zone ranges:
+[   0.000000]   Normal   [mem 0x00010000-0x0fdeffff]
+[   0.000000]   HighMem  empty
+[   0.000000] Movable zone start for each node
+[   0.000000] Early memory node ranges
+[   0.000000]   node   0: [mem 0x00010000-0x00096fff]
+[   0.000000]   node   0: [mem 0x00098000-0x0009ffff]
+[   0.000000]   node   0: [mem 0x00100000-0x0efdefff]
+[   0.000000]   node   0: [mem 0x0fdef000-0x0fdeffff]
+[   0.000000] Using APIC driver default
+[   0.000000] ACPI: PM-Timer IO Port: 0x1008
+[   0.000000] mapped APIC to         ffffb000 (        fee00000)
+[   0.000000] ACPI: LAPIC (acpi_id[0x01] lapic_id[0x00] enabled)
+[   0.000000] ACPI: LAPIC_NMI (acpi_id[0x01] high edge lint[0x1])
+[   0.000000] ACPI: IOAPIC (id[0x01] address[0xfec00000] gsi_base[0])
+[   0.000000] IOAPIC[0]: Assigned apic_id 1
+[   0.000000] IOAPIC[0]: apic_id 1, version 32, address 0xfec00000, GSI 0-23
+[   0.000000] ACPI: INT_SRC_OVR (bus 0 bus_irq 0 global_irq 2 dfl dfl)
+[   0.000000] Int: type 0, pol 0, trig 0, bus 00, IRQ 00, APIC ID 1, APIC INT 02
+[   0.000000] APIC: INT_SRC_OVR (bus 0 bus_irq 9 global_irq 9 high level)
+[   0.000000] Int: type 0, pol 1, trig 3, bus 00, IRQ 09, APIC ID 1, APIC INT 09
+[   0.000000] Int: type 0, pol 0, trig 0, bus 00, IRQ 01, APIC ID 1, APIC INT 01
+[   0.000000] Int: type 0, pol 0, trig 0, bus 00, IRQ 03, APIC ID 1, APIC INT 03
+[   0.000000] Int: type 0, pol 0, trig 0, bus 00, IRQ 04, APIC ID 1, APIC INT 04
+[   0.000000] Int: type 0, pol 0, trig 0, bus 00, IRQ 05, APIC ID 1, APIC INT 05
+[   0.000000] Int: type 0, pol 0, trig 0, bus 00, IRQ 06, APIC ID 1, APIC INT 06
+[   0.000000] Int: type 0, pol 0, trig 0, bus 00, IRQ 07, APIC ID 1, APIC INT 07
+[   0.000000] Int: type 0, pol 0, trig 0, bus 00, IRQ 08, APIC ID 1, APIC INT 08
+[   0.000000] Int: type 0, pol 0, trig 0, bus 00, IRQ 0a, APIC ID 1, APIC INT 0a
+[   0.000000] Int: type 0, pol 0, trig 0, bus 00, IRQ 0b, APIC ID 1, APIC INT 0b
+[   0.000000] Int: type 0, pol 0, trig 0, bus 00, IRQ 0c, APIC ID 1, APIC INT 0c
+[   0.000000] Int: type 0, pol 0, trig 0, bus 00, IRQ 0d, APIC ID 1, APIC INT 0d
+[   0.000000] Int: type 0, pol 0, trig 0, bus 00, IRQ 0e, APIC ID 1, APIC INT 0e
+[   0.000000] Int: type 0, pol 0, trig 0, bus 00, IRQ 0f, APIC ID 1, APIC INT 0f
+[   0.000000] Using ACPI (MADT) for SMP configuration information
+[   0.000000] ACPI: HPET id; 0x8086a201 base: 0xfed00000
+[   0.000000] mapped IOAPIC to ffffa000 (fec00000)
+[   0.000000] e820: [mem 0x0fdf0000-0xdfffffff] available for PCI devices
+[   0.000000] Built 1 zonelists in Zone order, mobility grouping on.  Total pages: 60787
+[   0.000000] Kernel command line: root=/dev/ram0 console=ttyQRK1,115200n8 earlycon=uart8250,mmio32,0x9000b000,115200n8 reboot=efi,warm apic=debug rw efi_main=0x0000000141ebad1e jmp_code32=0x000000029951c0c0
+[   0.000000] PID hash table entries: 1024 (order: 0, 4096 bytes)
+[   0.000000] Dentry cache hash table entries: 32768 (order: 5, 131072 bytes)
+[   0.000000] Inode-cache hash table entries: 16384 (order: 4, 65536 bytes)
+[   0.000000] __ex_table already sorted, skipping sort
+[   0.000000] Initializing CPU#0
+[   0.000000] Initializing HighMem for node 0 (00000000:00000000)
+[   0.000000] Memory: 220868k/260032k available (2849k kernel code, 24312k reserved, 1463k data, 308k init, 0k highmem)
+[   0.000000] virtual kernel memory layout:
+[   0.000000]     fixmap  : 0xfffa2000 - 0xfffff000   ( 372 kB)
+[   0.000000]     pkmap   : 0xffc00000 - 0xffe00000   (2048 kB)
+[   0.000000]     vmalloc : 0xd05f0000 - 0xffbfe000   ( 758 MB)
+[   0.000000]     lowmem  : 0xc0000000 - 0xcfdf0000   ( 253 MB)
+[   0.000000]       .init : 0xc1437000 - 0xc1484000   ( 308 kB)
+[   0.000000]       .data : 0xc12c8592 - 0xc14363c0   (1463 kB)
+[   0.000000]       .text : 0xc1000000 - 0xc12c8592   (2849 kb)
+[   0.000000] Checking if this processor honours the WP bit even in supervisor mode...Ok.
+[   0.000000] SLUB: Genslabs=15, HWalign=32, Order=0-3, MinObjects=0, CPUs=1, Nodes=1
+[   0.000000] NR_IRQS:2304 nr_irqs:256 16
+[   0.000000] Console: colour dummy device 80x25
+[   0.000000] tsc: Fast TSC calibration using PIT
+[   0.000000] tsc: Detected 399.076 MHz processor
+[   0.010012] Calibrating delay loop (skipped), value calculated using timer frequency.. 798.15 BogoMIPS (lpj=3990760)
+[   0.023034] pid_max: default: 32768 minimum: 301
+[   0.065482] Security Framework initialized
+[   0.070169] Mount-cache hash table entries: 512
+[   0.076861] Initializing cgroup subsys cpuacct
+[   0.080045] Initializing cgroup subsys freezer
+[   0.085115] Disabling PGE capability bit
+[   0.090039] Intel Pentium with F0 0F bug - workaround enabled.
+[   0.096676] Last level iTLB entries: 4KB 0, 2MB 0, 4MB 0
+[   0.096676] Last level dTLB entries: 4KB 0, 2MB 0, 4MB 0
+[   0.096676] tlb_flushall_shift: 6
+[   0.100040] CPU: Intel 05/09 (fam: 05, model: 09, stepping: 00)
+[   0.110150] ACPI: Core revision 20121018
+[   0.178736] Performance Events: no PMU driver, software events only.
+[   0.185331] Enabling APIC mode:  Flat.  Using 1 I/O APICs
+[   0.190048] Getting VERSION: 30010
+[   0.193823] Getting VERSION: 30010
+[   0.200037] Getting ID: 0
+[   0.202947] Getting ID: f000000
+[   0.206425] Getting LVT0: 700
+[   0.210037] Getting LVT1: 400
+[   0.213349] enabled ExtINT on CPU#0
+[   0.217317] ENABLING ID-APIC IRQs
+[   0.220036] Synchronizing Arb IDs.
+[   0.225018] ..TIMER: vector=0x30 apic1=0 pin1=2 apic2=-1 pin2=-1
+[   0.333662] Using local APIC timer interrupts.
+[   0.333662] calibrating APIC timer ...
+[   0.350000] ... lapic delta = 2494212
+[   0.350000] ... PM-Timer delta = 357953
+[   0.350000] ... PM-Timer result ok
+[   0.350000] ..... delta 2494212
+[   0.350000] ..... mult: 107125589
+[   0.350000] ..... calibration result: 3990739
+[   0.350000] ..... CPU clock speed is 399.0739 MHz.
+[   0.350000] ..... host bus clock speed is 399.0739 MHz.
+[   0.371438] devtmpgs: initialized
+[   0.377216] PM: Registering ACPI NVS region [mem 0x0f0df000-0x0fddefff] (13631488 bytes)
+[   0.390461] RTC time:  0:08:23, date: 01/01/01
+[   0.395783] NET: Registered protocol family 16
+[   0.410336] ACPI: bus type pci registered
+[   0.417491] PCI: MMCONFIG for domain 0000 [bus 00-1f] at [mem 0xe0000000-0xe1ffffff] (base 0xe0000000)
+[   0.420056] PCI: MMCONFIG at [mem 0xe0000000-0xe1ffffff] reserved in E820
+[   0.430030] PCI: Using MMCONFIG for extended config space
+[   0.440031] PCI: Using configuration type 1 for base access
+[   0.514260] bio: create slab <bio-0> at 0
+[   0.520806] ACPI: Added _OSI(Module Device)
+[   0.525464] ACPI: Added _OSI(Processor Device)
+[   0.530232] ACPI: Added _OSI(3.0 _SCP Extensions)
+[   0.535470] ACPI: Added _OSI(Processor Aggregator Device)
+[   0.594031] [Firmware Bug]: ACPI: BIOS _OSI(Linux) query ignored
+[   0.606352] ACPI: Interpreter enabled
+[   0.610063] ACPI: (supports S0 S3 S5)
+[   0.614464] ACPI: Using IOAPIC for interrupt routing
+[   0.722293] PCI: Using host bridge widnows from ACPI, if necessary, use "pci=nocrs" and report a bug
+[   0.734067] ACPI: PCI Root Bridge [PCI0] (domain 0000 [bus 00-1f])
+[   0.755202] PCI host bridge to bus 0000:00
+[   0.759789] pci_bus 0000:00: root bus resource [bus 00-1f]
+[   0.760246] pci_bus 0000:00: root bus resource [io  0x0000-0x0cf7]
+[   0.770061] pci_bus 0000:00: root bus resource [io  0x0d00-0xffff]
+[   0.776932] pci_bus 0000:00: root bus resource [mem 0x000a0000-0x000bffff]
+[   0.780056] pci_bus 0000:00: root bus resource [mem 0x10000000-0xfebfffff]
+[   0.802044] pci 0000:00:17.0: PCI bridge to [bus 01]
+[   0.807832] pci 0000:00:17.1: PCI bridge to [bus 02]
+[   0.815576]  pci0000:00: ACPI _OSC support notification failed, disabling PCIe ASPM
+[   0.820046]  pci0000:00: unable to request _OSC control (_OSC support mask: 0x08)
+[   0.866334] ACPI: PCI Interrupt Link [LNKA] (IRQs 3 4 5 7 9 10 11 12) *0, disabled.
+[   0.876408] ACPI: PCI Interrupt Link [LNKB] (IRQs 3 4 5 7 9 10 11 12) *0, disabled.
+[   0.886216] ACPI: PCI Interrupt Link [LNKC] (IRQs 3 4 5 7 9 10 11 12) *0, disabled.
+[   0.900404] ACPI: PCI Interrupt Link [LNKD] (IRQs 3 4 5 7 9 10 11 12) *0, disabled.
+[   0.911692] ACPI: PCI Interrupt Link [LNKE] (IRQs 3 4 5 7 9 10 11 12) *0, disabled.
+[   0.922899] ACPI: PCI Interrupt Link [LNKF] (IRQs 3 4 5 7 9 10 11 12) *0, disabled.
+[   0.933956] ACPI: PCI Interrupt Link [LNKG] (IRQs 3 4 5 7 9 10 11 12) *0, disabled.
+[   0.945436] ACPI: PCI Interrupt Link [LNKH] (IRQs 3 4 5 7 9 10 11 12) *0, disabled.
+[   0.959355] SCSI subsystem initialized
+[   0.965376] Intel Quark Board Galileo Firmware Version 0x01010000
+[   0.972798] Intel Quark side-band driver registered
+[   0.981272] IMR alloc id 0 0x00010000 - 0x0001436c locked
+[   0.991555] PCI: Using ACPI for IRQ routing
+[   1.003313] HPET: 3 timers in total, 0 timers will be used for per-cpu timer
+[   1.010232] hpet0: at MMIO 0xfed00000, IRQs 2, 8, 0
+[   1.015678] hpet0: 3 comparators, 64-bit 14.318180 MHz counter
+[   1.022421] Switching to clocksource hpet
+[   1.030998] pnp: PnP ACPI init
+[   1.034567] ACPI: bus type pnp registered
+[   1.043620] system 00:00: [mem 0xe0000000-0xe1ffffff] has been reserved
+[   1.051260] system 00:00: [mem 0xfed1c000-0xfed1ffff] has been reserved
+[   1.058627] system 00:00: [mem 0x000c0000-0x000dffff] has been reserved
+[   1.066067] system 00:00: [mem 0x000e0000-0x000fffff] could not be reserved
+[   1.073889] system 00:00: [mem 0xff800000-0xffffffff] has been reserved
+[   1.099383] system 00:03: [io  0x1000-0x100f] has been reserved
+[   1.106070] system 00:03: [io  0x1010-0x101f] has been reserved
+[   1.112737] system 00:03: [io  0x1100-0x113f] has been reserved
+[   1.119330] system 00:03: [io  0x1040-0x107f] has been reserved
+[   1.125992] system 00:03: [io  0x1140-0x117f] has been reserved
+[   1.145229] pnp 00:07: unknown resource type 19 in _CRS
+[   1.151129] pnp 00:07: can't evaluate _CRS: 1
+[   1.161849] pnp 00:08: unknown resource type 19 in _CRS
+[   1.167665] pnp 00:08: can't evaluate _CRS: 1
+[   1.176417] pnp 00:09: unknown resource type 17 in _CRS
+[   1.182321] pnp 00:09: can't evaluate _CRS: 1
+[   1.188372] pnp: PnP ACPI: found IO devices
+[   1.193267] ACPI: ACPI bus type pnp unregistered
+[   1.322107] pci 0000:00:17.0: BAR 8: assigned [mem 0x10000000-0x101fffff]
+[   1.329667] pci 0000:00:17.0: BAR 9: assigned [mem 0x10200000-0x103fffff 64bit pref]
+[   1.338368] pci 0000:00:17.1: BAR 8: assigned [mem 0x10400000-0x105fffff]
+[   1.346012] pci 0000:00:17.1: BAR 9: assigned [mem 0x10600000-0x107fffff 64bit pref]
+[   1.354706] pci 0000:00:17.0: BAR 7: assigned [io  0x2000-0x2fff]
+[   1.361580] pci 0000:00:17.1: BAR 7: assigned [io  0x3000-0x3fff]
+[   1.368372] pci 0000:00:17.0: PCI bridge to [bus 01]
+[   1.373976] pci 0000:00:17.0:   bridge window [io  0x2000-0x2fff]
+[   1.380829] pci 0000:00:17.0:   bridge window [mem 0x10000000-0x101fffff]
+[   1.388380] pci 0000:00:17.0:   bridge window [mem 0x10200000-0x103fffff 64bit pref]
+[   1.397053] pci 0000:00:17.1: PCI bridge to [bus 02]
+[   1.402653] pci 0000:00:17.1:   bridge window [io  0x3000-0x3fff]
+[   1.402653] pci 0000:00:17.1:   bridge window [mem 0x10400000-0x105fffff]
+[   1.417056] pci 0000:00:17.1:   bridge window [mem 0x10600000-0x107fffff 64bit pref]
+[   1.426778] NET: Registered protocol family 2
+[   1.433091] TCP established hash table entries: 2048 (order: 2, 16384 bytes)
+[   1.441123] TCP bind hash table entries: 2048 (order: 1, 8192 bytes)
+[   1.448229] TCP: Hash tables configured (established 2048 bind 2048)
+[   1.455565] TCP: reno registered
+[   1.459179] UDP hash table entries: 256 (order: 0, 4096 bytes)
+[   1.465774] UDP-Lite hash table entries: 256 (order: 0, 4096 bytes)
+[   1.473317] NET: Registered protocol family 1
+[   1.479821] Trying to unpack rootfs image as initramfs...
+[  11.547803] Freeing initrd memory: 2664k freed
+[  11.572539] microcode: Intel CPU family 0x5 not supported
+[  11.586194] HugeTLB registered 2 MB page size, pre-allocated 0 pages
+[  11.654475] msgmni has been set to 464
+[  11.663676] Block layer SCSI generic (bsg) driver version 0.4 loaded (major 253)
+[  11.671962] io scheduler noop registered
+[  11.676321] io scheduler deadline registered
+[  11.682236] io scheduler cfq registered (default)
+[  11.694229] input: Sleep Button as /devices/LNXSYSTM:00/LNXSYBUS:00/PNP0C0E:00/input/input0
+[  11.703779] ACPI: Sleep Button [SLPB]
+[  11.709025] input: Power Button as /devices/LNXSYSTM:00/LNXSYBUS:00/PNP0C0C:00/input/input1
+[  11.718574] ACPI: Power Button [PWRB]
+[  11.807413] Serial: 8250/16550 driver, 2 ports, IRQ sharing enabled
+[  11.840843] 0000:00:14.1: ttyS0 at MMIO 0x9000f000 (irq = 17) is a 16550A
+[  11.871469] 0000:00:14.5: ttyS1 at MMIO 0x9000b000 (irq = 17) is a 16550A
+[  11.888049] brd: module loaded
+[  11.897575] loop: module loaded
+[  11.902216] lpc_sch_probe BIOS_CNTL 0x00000101
+[  11.907158] lpc_sch_probe new BIOS_CNTL 0x00000101
+[  11.912553] lpc_sch_probe RCBA @ 0xfed1c000
+[  11.927434] rtc_cmos 00:01: RTC can wake from S4
+[  11.934149] rtc_cmos 00:01: rtc core: registered rtc_cmos as rtc0
+[  11.941261] rtc0: alarms up to one day, 242 bytes nvram, hpet irqs
+[  11.948753] cpuidle: using governor ladder
+[  11.953564] cpuidle: using governor menu
+[  11.967756] eSRAM: CTRL 0x047f3f91 block 0x00000000
+[  11.973256] eSRAM: pages 128
+[  11.986948] intel_qrk_esram_test_probe/Oct 31 2016/14:39:21 complete OK !!
+[  11.996662] THRM: critical reset 104 c hot 95 c hardware failover 105 c
+[  12.006891] TCP: cubic registered
+[  12.010843] NET: Registered protocol family 17
+[  12.016312] ... APIC ID:      00000000 (0)
+[  12.020612] ... APIC Version: 00030010
+[  12.020612] 0000000000000000000000000000000000000000000000000000000000000000
+[  12.020612] 0000000000000000000000000000000000000000000000000000000000000000
+[  12.020612] 0000000000000000000000000000000000000000000000000000000000000000
+[  12.020612]
+[  12.050638] testing the IO APIC.......................
+[  12.057736] .................................... done.
+[  12.063497] Using IPI Shortcut mode
+[  12.067422] turn off boot console uart0
+
+Poky 9.0.4 (Yocto Project 1.4.4 Reference Distro) 1.4.4 clanton /dev/ttyS1
+
+clanton login:
 ```
 
 ***
