@@ -4,7 +4,21 @@ This repository outlines the capabilities of the Intel Galileo (First Generation
 
 ![IntelGalileoGen1Front](/images/Intel_Galileo_Gen1_Front.jpg?raw=true "Intel Galileo Gen1 Front")
 
-## Board Specifications
+## Table of Contents
+
+- [Board Specifications](#Board-Specs)
+- [Connecting to Board via RS232 Serial Cable](#Connect-Via-Serial)
+- [How to Update Board Firmware](#Update-Firmware)
+- [Boot Process for SPI Image (Firmware Version 732)](#Boot-SPI-FV732)
+- [Boot Process for SPI Image (Firmware Version 1.1.0)](#Boot-SPI-FV110)
+- [Boot Process for SD Card Image (Firmware Version 1.1.0)](#Boot-SD-FV110)
+- Running Debian on Intel Galileo
+
+***
+
+<h2 id="Board-Specs">
+Board Specifications
+</h2>
 
 #### Processor: Intel Quark SoC X1000 application processor
 - Clock Speed: 400 MHz
@@ -42,14 +56,10 @@ This repository outlines the capabilities of the Intel Galileo (First Generation
 
 ***
 
-## Table of Contents
+<h2 id="Connect-Via-Serial">
+Connecting to Board via RS232 Serial Cable
+</h2>
 
-- [How to Update Board Firmware](#Update-Firmware)
-- [Boot Process for SPI Image (Firmware Version 732)](#Boot-SPI-FV732)
-- [Boot Process for SPI Image (Firmware Version 1.1.0)](#Boot-SPI-FV110)
-- [Boot Process for SD Card Image (Firmware Version 1.1.0)](#Boot-SD-FV110)
-- Running Debian on Intel Galileo
-- Connecting to Board via RS232 Serial Cable
 
 ***
 
