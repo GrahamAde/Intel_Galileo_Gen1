@@ -44,22 +44,25 @@ This repository outlines the capabilities of the Intel Galileo (First Generation
 
 ## Table of Contents
 
-- How to Update Board Firmware
-- Boot Process for SPI Image (Firmware Version 732)
-- Boot Process for SPI Image (Firmware Version 1.1.0)
-- Boot Process for SD Card Image (Firmware Version 1.1.0)
+- [How to Update Board Firmware](#Update-Firmware)
+- [Boot Process for SPI Image (Firmware Version 732)](#Boot-SPI-FV732)
+- [Boot Process for SPI Image (Firmware Version 1.1.0)](#Boot-SPI-FV110)
+- [Boot Process for SD Card Image (Firmware Version 1.1.0)](#Boot-SD-FV110)
 - Running Debian on Intel Galileo
 - Connecting to Board via RS232 Serial Cable
 
 ***
 
+<a id="Update-Firmware">
 ## How to Update Board Firmware
-
+</a>
 
 
 ***
 
+<a id="Boot-SPI-FV732">
 ## Boot Process for SPI Image (Firmware Version 732)
+</a>
 
 **Notes:** This early firmware version does not support booting off SD cards.  You must update to a later firmware version to enable SD card booting functionality.
 
@@ -290,7 +293,9 @@ clanton login:
 
 ***
 
+<a id="Boot-SPI-FV110">
 ## Boot Process for SPI Image (Firmware Version 1.1.0)
+</a>
 
 **Notes:** This is the last firmware version released by Intel for the Galileo Gen 1.  The "Intel Galileo Firmware Updater and Drivers (Gen 1 & 2)" directory in this repository contains the software which will update the board to firmware version 1.1.0.
 
@@ -301,7 +306,7 @@ clanton login:
 ![SPIBootScreenFV110](/images/Intel_Galileo_Gen1_SPI_Boot_Screen_FV110.jpg?raw=true "SPI Boot Screen Firmware Version 1.1.0")
 
 #### Boot Log
-[Image for 'SPI Boot Log Firmware Version 1.1.0](/images/Intel_Galileo_Gen1_SPI_Boot_Log_FV110.jpg)
+[Image for 'SPI Boot Log Firmware Version 1.1.0'](/images/Intel_Galileo_Gen1_SPI_Boot_Log_FV110.jpg)
 
 ```
 Found layout.conf @ 0xffcff000 len 0x00000bf3
@@ -793,8 +798,9 @@ clanton login:
 
 ***
 
+<a id="Boot-SD-FV110">
 ## Boot Process for SD Card Image (Firmware Version 1.1.0)
-
+</a>
 
 #### Preboot Screen
 ![PrebootScreen](/images/Intel_Galileo_Gen1_Preboot_Screen.jpg?raw=true "Preboot Screen")
