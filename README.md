@@ -64,8 +64,8 @@ Connecting to Board via RS232 Serial Cable
 The Intel Galileo Gen1 uses a custom serial port which utilizes a stereo headphone jack.  To connect via the serial headphone jack, you can create your own cable from a pair of headphones.
 
 #### RS-232 Serial Jack Connection
-![RS-232 Jack Connection Top](/images/Intel_Galileo_Gen1_RS232_Jack_Connection_Top.jpg?raw=true "RS-232 Jack Connection Top")
-![RS-232 Jack Connection Front](/images/Intel_Galileo_Gen1_RS232_Jack_Connection_Front.jpg?raw=true "RS-232 Jack Connection Front")
+![RS-232 Jack Connection Top](/images/RS232_Jack_Connection_Top.jpg?raw=true "RS-232 Jack Connection Top")
+![RS-232 Jack Connection Front](/images/RS232_Jack_Connection_Front.jpg?raw=true "RS-232 Jack Connection Front")
 
 #### RS-232 Serial Jack Pinout
 
