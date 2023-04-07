@@ -13,7 +13,7 @@ This repository outlines the capabilities of the Intel Galileo (First Generation
 - [Boot Log for SPI Image (Firmware Version 1.1.0)](#Boot-SPI-FV110)
 - [Boot Log for SD Card Image (Firmware Version 1.1.0)](#Boot-SD-FV110)
 - [Shutdown Log for SD Card Image (Firmware Version 1.1.0)](#Shutdown-SD-FV110)
-- Running Debian on Intel Galileo
+- [Running Debian GNU/Linux on Intel Galileo](#Debian-Galileo)
 
 ***
 
@@ -61,12 +61,28 @@ Board Specifications
 Connecting to Board via RS232 Serial Cable
 </h2>
 
+The Intel Galileo Gen1 uses a custom serial port which utilizes a stereo headphone jack.  To connect via the serial headphone jack, you can create your own cable from a pair of headphones.
+
+#### RS-232 Serial Jack Connection
+![RS-232 Jack Connection Top](/images/Intel_Galileo_Gen1_RS232_Jack_Connection_Top.jpg?raw=true "RS-232 Jack Connection Top")
+![RS-232 Jack Connection Front](/images/Intel_Galileo_Gen1_RS232_Jack_Connection_Front.jpg?raw=true "RS-232 Jack Connection Front")
+
+#### RS-232 Serial Jack Pinout
+
+![RS-232 DB-9 Pinout](/images/Intel_Galileo_Gen1_RS-232_DB-9_Pinout.jpg?raw=true "RS-232 DB-9 Pinout")
+![Serial Jack Pinout](/images/Intel_Galileo_Gen1_Serial_Jack_Pinout.jpg?raw=true "Serial Jack Pinout")
 
 ***
 
 <h2 id="Update-Firmware">
 How to Update Board Firmware
 </h2>
+
+#### Updating Board Firmware on Windows 7
+Intel Galileo Firmware Updater requires JRE (Java Runtime Environment 1.6.0).
+
+
+#### Updating Board Firmware on Debian GNU/Linux 11 (Bullseye)
 
 
 ***
@@ -1371,3 +1387,9 @@ See 'systemctl status alsa-store.service' for details.
 [   79.459104] Restarting system.
 [   79.462283] reboot: machine restart
 ```
+
+***
+
+<h2 id="Debian-Galileo">
+Running Debian GNU/Linux on Intel Galileo
+</h2>
