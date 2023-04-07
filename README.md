@@ -836,7 +836,7 @@ Boot Log for SD Card Image (Firmware Version 1.1.0)
 ![SDBootScreenFV110](/images/Intel_Galileo_Gen1_SD_Boot_Screen_FV110.jpg?raw=true "SD Boot Screen Firmware Version 1.1.0")
 
 #### Boot Log
-[Image for 'SD Boot Log Firmware Version 1.1.0](/images/Intel_Galileo_Gen1_SD_Boot_Log_FV110.jpg)
+[Image for 'SD Boot Log Firmware Version 1.1.0'](/images/Intel_Galileo_Gen1_SD_Boot_Log_FV110.jpg)
 
 ```
 Found layout.conf @ 0xffcff000 len 0x00000bf3
@@ -1284,7 +1284,7 @@ Shutdown Log for SD Card Image (Firmware Version 1.1.0)
 </h2>
 
 #### Shutdown Log
-['Image for SD Shutdown Log Firmware Version 1.1.0'](/images/Intel_Galileo_Gen1_SD_Shutdown_Log_FV110.jpg)
+[Image for 'SD Shutdown Log Firmware Version 1.1.0'](/images/Intel_Galileo_Gen1_SD_Shutdown_Log_FV110.jpg)
 
 ```
 [  OK  ] Stopped target System Time Synchronized.
