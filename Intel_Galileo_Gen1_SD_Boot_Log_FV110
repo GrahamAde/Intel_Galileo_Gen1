@@ -1,0 +1,436 @@
+Found layout.conf @ 0xffcff000 len 0x00000bf3
+
+# WARNING: this file is indirectly included in a Makefile where it
+# defines Make targets and pre-requisites. As a consequence you MUST
+# run "make clean" BEFORE making changes to it. Failure to do so may
+# result in the make process being unable to clean files it no longer
+# has references to.
+
+[main]
+size=8388608
+type=global
+
+
+[MFH]
+version=0x1
+flags=0x0
+address=0xfff08000
+type=mfh
+
+
+[Flash Image Version]
+type=mfh.version
+meta=version
+value=0x01010000
+
+[ROM_OVERLAY]
+address=0xfffe0000
+item_file=../../Quark_EDKII/Build/QuarkPlatform/RELEASE_GCC/FV/FlashModules/EDKII_BOOTROM_OVERRIDE.Fv
+type=some_type
+
+[signed-key-module]
+address=0xfffd8000
+item_file=config/SvpSignedKeyModule.bin
+svn_index=0
+type=some_type
+in_capsule=no
+
+# On a deployed system, the SVN area holds the last known secure
+# version of each signed asset.
+# TODO: generate this area by collecting the SVN from the assets
+# themselves.
+[svn-area]
+address=0xfffd0000
+item_file=config/SVNArea.bin
+type=some_type
+# A capsule upgrade must implement some smart logic to make sure the
+# highest Security Version Number always wins (rollback protection)
+in_capsule=no
+
+[fixed_recovery_image]
+address=0xfff90000
+item_file=../../Quark_EDKII/Build/QuarkPlatform/RELEASE_GCC/FV/FlashModules/EDKII_RECOVERY_IMAGE1.Fv
+sign=yes
+type=mfh.host_fw_stage1_signed
+svn_index=2
+# in_capsule=no
+
+[NV_Storage]
+address=0xfff30000
+item_file=../../Quark_EDKII/Build/QuarkPlatform/RELEASE_GCC/FV/FlashModules/EDKII_NVRAM.bin
+type=some_type
+
+[RMU]
+address=0xfff00000
+item_file=../../Quark_EDKII/Build/QuarkPlatform/RELEASE_GCC/FV/FlashModules/RMU.bin
+type=none_registered
+
+[boot_stage1_image1]
+address=0xffec0000
+item_file=../../Quark_EDKII/Build/QuarkPlatform/RELEASE_GCC/FV/FlashModules/EDKII_BOOT_STAGE1_IMAGE1.Fv
+sign=yes
+boot_image=0
+type=mfh.host_fw_stage1_signed
+svn_index=1
+
+[boot_stage1_image2]
+address=0xffe80000
+item_file=../../Quark_EDKII/Build/QuarkPlatform/RELEASE_GCC/FV/FlashModules/EDKII_BOOT_STAGE1_IMAGE2.Fv
+sign=yes
+boot_index=1
+type=mfh.host_fw_stage1_signed
+svn_index=1
+
+[boot_stage_2_compact]
+address=0xffd00000
+item_file=../../Quark_EDKII/Build/QuarkPlatform/RELEASE_GCC/FV/FlashModules/EDKII_BOOT_STAGE2_COMPACT.Fv
+sign=yes
+type=mfh.host_fw_stage2_signed
+svn_index=3
+
+[Ramdisk]
+address=0xffa600000
+item_file=../../meta-clanton/yocto_build/tmp/deploy/images/image-spi-galileo-clanton.cpio.lzma
+sign=yes
+type=mfh.ramdisk_signed
+svn_index=7
+
+[LAYOUT.CONF_DUMP]
+address=0xffcff000
+type=mfh.build_information
+meta=layout
+
+[Kernel]
+address=0xff852000
+item_file=../../meta-clanton/yocto_build/tmp/deploy/images/bzImage
+sign=yes
+type=mfh.kernel_signed
+svn_index=6
+
+[grub.conf]
+address=0xff851000
+item_file=grub/grub-spi.conf
+sign=yes
+type=mfh.bootloader_conf_signed
+svn_index=5
+
+[grub]
+address=0xff800000
+item_file=../../meta-clanton/yocto_build/tmp/deploy/images/grub.efi
+sign=yes
+fvwrap=yes
+guid=B43BD3E1-64D1-4744-9394-D0E1C4DE8C87
+type=mfh.bootloader_signed
+svn_index=4
+
+
+[Linux-EFI, setup=0x109f, size=0x2373b0]
+[    0.889305] console [ttyS1] enable, bootconsole disabled
+[    0.900311] brd: module loaded
+[    0.906579] loop: module loaded
+[    0.910299] lpc_sch_probe BIOS_CNTL 0x00000101
+[    0.914788] lpc_sch_probe new BIOS_CNTL 0x0000101
+[    0.919612] lpc_sch_probe RCBA @ 0xfed1c000
+[    0.926720] tun: Universal TUN/TAP device driver, 1.6
+[    0.931893] tun: (C) 1999-2004 Max Krasnyansky <maxk@qualcomm.com>
+[    0.938888] rtc_cmos 00:01: RTC can wake from S4
+[    0.944521] rtc_cmos 00:01: rtc core: registered rtc_cmos as rtc0
+[    0.950832] rtc0: alarms up to one day, 242 bytes nvram, hpet irqs
+[    0.957252] cpuidle: using governor ladder
+[    0.961468] cpuidle: using governor menu
+[    0.965616] sdhci: Secure Digital Host Controller Interface driver
+[    0.971924] sdhci: Copyright(c) Pierre Ossman
+[    0.976440] sdhci-pci 0000:00:14.0: SDHCI controller found [8086:08a7] (rev 10)
+[    1.030154] mmc0: SDHCI controller on PCI [0000:00:14.0] using ADMA
+[    1.036999] sdhci-pltfm: SDHCI platform and OF driver helper
+[    1.057220] eSRAM: CTRL 0x047f3f91 block 0x00000000
+[    1.062222] eSRAM: pages 128
+[    1.086319] intel_qrk_esram_test_probe/May 12 2016/08:16:55 complete OK !!
+[    1.094454] THRM: critical reset 104 c hot 95 c hardware failover 105 c
+[    1.101414] oprofile: using timer interrupt.
+[    1.107309] TCP: cubic registered
+[    1.110848] NET: Registered protocol family 17
+[    1.116349] ... APIC ID:      00000000 (0)
+[    1.120471] ... APIC VERSION: 00030010
+[    1.120698] 0000000000000000000000000000000000000000000000000000000000000000
+[    1.120698] 0000000000000000000000000000000000000000000000000000000000000000
+[    1.120698] 0000000000000000000000000000000000000000000000000000000000000000
+[    1.120698]
+[    1.147872] testing the IO APIC.......................
+[    1.154504] .....................................done.
+[    1.159672] Using IPI Shortcut mode
+[    1.168249]  Magic number: 1:0:0
+[    1.172102] rtc_cmos 00:01: setting system clock to 2001-01-01 00:02:44 UTC (978307364)
+[    1.182725] Waiting for root device /dev/mmcblk0p2...
+[    1.195421] mmc0: new high speed SDHC card at address 0007
+[    1.202109] mmcblk0: mmc0:0007 SD16G 14.9 GiB
+[    1.209762]  mmcblk0: p1 p2
+[    1.296177] kjournald starting.  Commit interval 5 seconds
+[    1.304788] EXT3-fs (mmcblk0p2): using internal journal
+[    1.310146] EXT3-fs (mmcblk0p2): mounted filesystem with writeback data mode
+[    1.317302] VFS: Mounted root (ext3 filesystem) on device 179:2.
+[    1.325407] devtmpfs: mounted
+[    1.328794] Freeing unused kernel memory: 384k freed
+[    1.336648] Write protecting the kernel text: 3416k
+[    1.342058] Write protecting the kernel read-only data: 1524k
+[    1.347844] NX-protecting the kernel data: 2728k
+[    1.592955] systemd[1]: systemd 216 running in system mode. (-PAM -AUDIT -SELINUX +IMA -APPARMOR +SMACK +SYSVINIT -LIBCRYPTSETUP -GCRYPT +GNUTLS +ACL +XZ -LZ4 -SECCOMP +BLKID -ELFUTILS +KMOD -IDN )
+[    1.613259] systemd[1]: Detected arhitecture 'x86'.
+
+Welcome to iot-devkit (Intel IoT Development Kit) 3.5 (tarsier)!
+
+
+[    1.719899] NET: Registered protocol family 10
+[    1.727362] systemd[1]: Inserted module 'ipv6'
+[    1.735887] systemd[1]: Set hostname to <galileo>
+[    1.750177] tsc: Refined TSC clocksource calibrtation: 399.076 MHz
+[    1.756331] Switching to clocksource tsc
+[    2.316632] systemd[1]: [/lib/systemd/system/wyliodrin-server.service:3] Failed to add dependency on redis, ignoring: Invalid argument
+[    2.340020] systemd[1]: [/lib/systemd/system/wyliodrin-hypervisor.service:3] Failed to add dependency on redis, ignoring: Invalid argument
+[    2.355685] systemd[1]: [/lib/systemd/system/redis.service:7] Unknown lvalue 'ExecPre' in section 'Service'
+[    2.440730] systemd[1]: Expecting device dev-ttyS1.device...
+         Expecting device dev-ttyS1.device...
+[    2.470593] systemd[1]: Starting Forward Password Requests to Wall Directory Watch.
+[    2.479509] systemd[1]: Started Forward Password Requests to Wall Directory Watch.
+[    2.487673] systemd[1]: Starting Dispatch Password Requests to Console Directory Watch.
+[    2.496712] systemd[1]: Started Dispatch Password Requests to Console Directory Watch.
+[    2.505066] systemd[1]: Starting Paths.
+[  OK  ] Reached target Paths.
+[    2.530545] systemd[1]: Reached target Paths.
+[    2.535303] systemd[1]: Starting Swap.
+[  OK  ] Reached target Swap.
+[    2.560545] systemd[1]: Reached target Swap.
+[    2.565184] systemd[1]: Expecting device dev-mmcblk0p1.device...
+         Expecting device dev-mmcblk0p1.device...
+[    2.590586] systemd[1]: Starting Root Slice.
+[  OK  ] Created slice Root Slice.
+[    2.640546] systemd[1]: Created slice Root Slice.
+[    2.645615] systemd[1]: Starting /dev/initctl Compatibility Named Pipe.
+[  OK  ] Listening on /dev/initctl Compatibility Named Pipe.
+[    2.710553] systemd[1]: Listening on /dev/initctl Compatibility Named Pipe.
+[    2.717876] systemd[1]: Starting Delayed Shutdown Socket.
+[  OK  ] Listening on Delayed Shutdown Socket.
+[    2.740549] systemd[1]: Listening on Delayed Shutdown Socket.
+[    2.746656] systemd[1]: Starting Journal Socket (/dev/log).
+[  OK  ] Listening on Journal Socket (/dev/log).
+[    2.770550] systemd[1]: Listening on Journal Socket (/dev/log).
+[    2.776909] systemd[1]: Starting udev Control Socket.
+[  OK  ] Listening on udev Control Socket.
+[    2.800549] systemd[1]: Listening on udev Control Socket.
+[    2.806385] systemd[1]: Starting udev Kernel Socket.
+[  OK  ] Listening on udev Kernel Socket.
+[    2.830549] systemd[1]: Listening on udev Kernel Socket.
+[    2.836266] systemd[1]: Starting Journal Socket.
+[  OK  ] Listening on Journal Socket.
+[    2.860549] systemd[1]: Listening on Journal Socket.
+[    2.866060[ systemd[1]: Starting System Slice.
+[  OK  ] Created slice System Slice.
+[    2.890548] systemd[1]: Created slice System Slice.
+[    2.895853] systemd[1]: Staring set initial time to last shutdown time...
+[        Starting set initial time to last shutdown time...
+[    2.926481] systemd[1]: Starting Load modules for the Intel galileo...
+         Starting Load modules for the Intel galileo...
+[    2.966609] systemd[1]: Started File System Check on Root Device.
+[    2.990935] systemd[1]: Mounting Temporary Directory...
+         Mounting Temporary Directory...
+[    3.033997] systemd[1]: Starting system-serial\x2dgetty.slice.
+[  OK  ] Created slice system-serial\x2dgetty.slice.
+[    3.090568] systemd[1]: Created slice system-serial\x2dgetty.slice.
+[    3.098200] systemd[1]: Starting system-getty.slice.
+[  OK  ] Created slice system-getty.slice.
+[    3.114884] systemd[1]: Created slice system-getty.slice.
+[    3.122644] systemd[1]: Mounting POSIX Message Queue File System...
+         Mounting POSIX Message Queue File System...
+[    3.236198] systemd[1]: Starting udev Coldplug all Devices...
+         Starting udev Coldplug all Devices...
+[    3.318301] intel_qrk_gip 0000:00:15.2: enabling device (0000 -> 0002)
+[    3.358038] systemd[1]: Starting Load Kernel Modules...
+[    3.364538] platform qrk-gpio-restrict-sc.0: Driver qrk-gpio-restrict-sc requests probe deferral
+         Starting Load Kernel Modules...
+[    3.378607] intel_qrk_gpio_probe UIO addr 0x90006000 internal_addr 0xd2614000 size 4096 memtype 1
+[    3.400442] intel_qrk_gip 0000:00:15.2: i2c speed set to 100kHz
+[    3.419275] systemd[1]: Mounting Huge Pages File System...
+[    3.431445] platform qrk-gpio-restrict-sc.0: Driver qrk-gpio-restrict-sc requests probe deferral
+         Mounting Huge Pages File System...
+[    3.507145] systemd[1]: Starting Create list of required static device nodes for the current kernel...
+         Starting Create list of required st... nodes for the current kernel...
+[    3.610141] i2c /dev entries driver
+[    3.644872] systemd[1]: Mounting Debug File System...
+         Mounting Debug File System...
+[    3.701234] ACPI: bus type usb registered
+[    3.705882] usbcore: registered new interface driver usbfs
+[    3.717494] systemd[1]: Starting Journal Service...
+[    3.762469] ce4100_spi 0000:00::15.0: enabling device (0000 -> 0002)
+[    3.769804] platform qrk-gpio-restrict-sc.0: Driver qrk-gpio-restrict-sc requests probe deferral
+[    3.779649] usbcore: registered new interface driver hub
+         Starting Journal Service...
+[    3.810516] usbcore: registered new device driver usb
+[    3.825252] ce4100_spi 0000:00:15.1: enabling device (0000 -> 0002)
+[  OK  ] Started Journal Service.
+[    3.857165] platform qrk-gpio-restrict-sc.0: Driver qrk-gpio-restrict-sc requests probe deferral
+[    3.870611] systemd[1]: Started Journal Service.
+[  OK  ] Reached target Slices.
+         Starting Remount Root and Kernel File Systems...
+[    3.959493] spi_master spi0: will run message pump with realtime priority
+[  OK  ] Mounted Debug File System.
+[    3.991352] platform qrk-gpio-restrict-sc.0: Driver qrk-gpio-restrict-sc requests probe deferral
+[    4.004351] Bluetooth: Core ver 2.16
+[    4.008215] NET: Registered protocol family 31
+[    4.012791] Bluetooth: HCI device and connection manager initialized
+[    4.019339] spi_master spi1: will run message pump with realtime priority
+[  OK  ] Mounted Huge Pages File System.
+[  OK  ] Mounted POSIX Message Queue File System.
+[    4.057219] platform qrk-gpio-restrict-sc.0: Driver qrk-gpio-restrict-sc requests probe deferral
+[  OK  ] Mounted Temporary Directory.
+[    4.142751] Bluetooth: HCI socket layer initialized
+[    4.147711] Bluetooth: L2CAP socket layer initialized
+[  OK  ] Started set initial time to last shutdown time.
+[    4.178473] Bluetooth: SCO scoket layer initialized
+[    4.237781] usbcore: registered new interface driver btusb
+[  OK  ] Started Create list of required sta...ce nodes for the current kernel.
+[    4.293541] platform qrk-gpio-restrict-sc.0: Driver qrk-gpio-restrict-sc requests probe deferral
+[  OK  ] Started Remount Root and Kernel File Systems.
+[    4.315356] EFI Variables Facility v0.08 2004-May-17
+[  OK  ] Started Load modules for the Intel galileo.
+[  OK  ] Started udev Coldplug all Devices.
+         Starting Create Static Device Nodes in /dev...
+[  OK  ] Started Create Static Device Nodes in /dev.
+         Starting udev Kernel Device Manager...
+[  OK  ] Reached target Local File Systems (Pre).
+         Mounting /var/volatile...
+[    6.221388] systemd-udevd[84]: starting version 216
+[  OK  ] Started udev Kernel Device Manager.
+[    6.324415] ehci_hcd: USB 2.0 'Enhanced' Host Controller (EHCI) Driver
+[  OK  ] Mounted /var/volatile.
+[    6.384701] ehci-pci: EHCI PCI platform driver
+[    6.442001] ehci-pci 0000:00:14.3: EHCI Host Controller
+[    6.477402] ehci-pci 0000:00:14.3: new USB bus registered, assigned bus number 1
+[    6.512130] ehci-pci 0000:00:14.3: INSNREG01 is 0x007f007f
+[    6.517672] ehci-pci 0000:00:14.3: INSNREG01 is 0x007f007f
+[    6.570301] ehci-pci 0000:00:14.3: irq 19, io mem 0x9000d000
+[    6.600220] ehci-pci 0000:00:14.3: USB 2.0 started, EHCI 1.00
+         Starting Load/Save Random Seed...
+[    6.639573] hub 1-0:1.0: USB hub found
+[    6.680262] hub 1-0:1.0: 2 ports detected
+[    6.684839] platform qrk-gpio-restrict-sc.0: Driver qrk-gpio-restrict-sc requests probe deferral
+[  OK  ] Started Load/Save Random Seed.
+[    6.814807] sch_gpio_probe UIO port addr 0x1080 size 64 porttype 1
+[    6.862277] cy8c9540a 0-0020: dev_id=0x40
+[    6.994695] at24 0-0050: byte_len looks suspicious (no power of 2)!
+[    7.045914] at24 0-0050: 11264 byte at24 EEPROM, writable, 1 bytes/write
+[    7.299890] cfg80211: Calling CRDA to update world regulatory domain
+[    7.368407] Intel(R) Wireless WiFi driver for Linux, in-tree:
+[    7.374315] Copyright(c) 2003-2013 Intel Corporation
+[    7.439281] ohci_hcd: USB 1.1 'Open' Host Controller (OHCI) Driver
+[    7.487576] ohci_hcd 0000:00:14.4: OHCI Host Controller
+[    7.507565] ohci_hcd 0000:00:14.4: new USB bus registered, assigned bus number 1
+[    7.548155] ohci_hcd 0000:00:14.4: irq 16, io mem 0x9000c000
+[    7.631383] hub 2-0:1.0: USB hub found
+[    7.635241] hub 2-0:1.0: 2 ports detected
+[    7.814331] PPP generic driver version 2.4.2
+[    7.902723] NET: Registered protocol family 24
+[    8.038286] stmmaceth 0000:00:14.6: enabling device (0000 -> 0002)
+[    8.120618] stmmac MSI mode enabled
+[    8.123969] Vendor 0x8086 Device 0x0937
+[    8.128166] stmmac - user ID: 0x10, Synopsys ID: 0x37
+[    8.133365]  DMA HW capability register supported
+[    8.137933]  Enhanced/Alternate descriptors
+[    8.142408]  RX Checksum Offload Engine supported (type 2)
+[    8.147928]  TX Checksum insertion supported
+[    8.152288]  Enable RX Mitigation via HW Watchdog Timer
+[  OK  ] Found device /dev/ttyS1.
+[    8.260496] libphy: stmmac: probed
+[    8.263951] eth0: PHY ID 20005c90 at 1 IRQ 0 (stmmac-1:01) active
+[    8.485872] Initializing USB Mass Storage driver...
+[    8.535326] usbcore: registered new interface driver usb-storage
+[    8.541465] USB Mass Storage support registered.
+[  OK  ] Found device /dev/mmcblk0p1.
+[    8.652354] usbcore: registered new interface driver usbhid
+[    8.657967] usbhid: USB HID core driver
+         Mounting /media/card...
+[    8.829324] g_acm_ms gadget: Mass Storage Function, version: 2009/09/11
+[    8.836114] g_acm_ms gadget: Number of LUNs=1
+[    8.842593]  lun0: LUN: removable file: /dev/mmcblk0p1
+[    8.871351] g_acm_ms gadget: Composite Gadget (ACM + MS), version: 2011/10/10
+[    8.915843] g_acm_ms gadget: g_acm_ms ready
+[  OK  ] Mounted /media/card.
+[  OK  ] Reached target Local File Systems.
+         Starting Create Volatile Files and Directories...
+         Starting Trigger Flushing of Journal to Persistent Storage...
+[  OK  ] Started Load Kernel Modules.
+[  OK  ] Started Create Volatile Files and Directories.
+[   10.222845] systemd-udevd[87]: renamed network interface eth0 to enp0s20f6
+[   10.244872] systemd-journald[64]: Received request to flush runtime journal from PID 1
+[  OK  ] Started Trigger Flushing of Journal to Persistent Storage.
+         Starting Network Time Synchronization...
+         Starting Update UTMP about System Boot/Shutdown...
+         Mounting FUSE Control File System...
+         Starting Apply Kernel Variables...
+[  OK  ] Mounted FUSE Control File System.
+[  OK  ] Started Apply Kernel Variables.
+[  OK  ] Started Network Time Synchronization.
+[  OK  ] Started Update UTMP about System Boot/Shutdown.
+[  OK  ] Reached target System Time Synchronized.
+[  OK  ] Reached target System Initialization.
+[  OK  ] Listening on Avahi mDNS/DNS-SD Stack Activation Socket.
+[  OK  ] Listening on D-Bus System Message Bus Socket.
+[  OK  ] Reached target Timers.
+         Starting Restore Sound Card State...
+[  OK  ] Listening on sshd.socket.
+[  OK  ] Started Restore Sound Card State.
+[  OK  ] Reached target Sockets.
+[  OK  ] Reached target Basic System.
+         Starting Connection service...
+         Starting Target Communication Framework agent...
+         Starting Zero-configuration networking...
+         Starting Telephony service...
+         Starting Wyliodrin hypervisor...
+         Starting Lightning Fast Webserver With Light System Requirements...
+         Starting Galileo Arduino Layer...
+[  OK  ] Started Galileo Arduino Layer.
+         Starting Wyliodrin server...
+         Starting Login Service...
+         Starting Avahi mDNS/DNS-SD Stack...
+         Starting D-Bus System Message Bus...
+[  OK  ] Started D-Bus System Message Bus.
+[  OK  ] Started Avahi mDNS/DNS-SD Stack.
+[  OK  ] Started Telephony service.
+         Starting Provides static IP address...
+[  OK  ] Started Target Communication Framework agent.
+[  OK  ] Started Lightning Fast Webserver With Light System Requirements.
+[   13.272402] enp0s20f6: device MAC address 98:f4:ee:01:32:70
+[   13.458630] netlink: 12 bytes leftover after parsign attributes.
+[  OK  ] Started Zero-configuration networking.
+[   13.510255] netlink: 12 bytes leftover after parsing attributes.
+[   13.516605] netlink: 12 bytes leftover after parsing attributes.
+[  OK  ] Started Provides static IP address.
+[  OK  ] Started Connection service.
+[  OK  ] Started Login Service.
+[  OK  ] Reached target Remote File Systems.
+         Starting Permit User Sessions...
+         Starting Bluetooth service...
+         Starting Intel_XDK Daemon...
+[  OK  ] Started Intel_XDK Daemon.
+[  OK  ] Started Permit User Sessions.
+         Starting Serial Getty on ttyS1...
+[  OK  ] Started Serial Getty on ttyS1.
+         Starting Getty on tty1...
+[  OK  ] Started Getty on tty1.
+[  OK  ] Reached target Login Prompts.
+[  OK  ] Started Bluetooth service.
+[   15.924386] Bluetooth: BNEP (Ethernet Emulation) ver 1.3
+[   15.929748] Bluetooth: BNEP filters: protocol multicast
+[   15.978129] Bluetooth: BNEP socket layer initialized
+         Starting WPA supplicant...
+         Starting Hostname Service...
+[  OK  ] Started WPA supplicant.
+[  OK  ] Started Hostname Service.
+[  OK  ] Started Wyliodrin hypervisor.
+[  OK  ] Started Wyliodrin server.
+[  OK  ] Reached target Multi-User System.
+         Starting Redis Server...
+         Starting Update UTMP about System Runlevel Changes...
+[  OK  ] Started Update UTMP about System Runlevel Changes.
+[  OK  ] Started Redis Server.
+
+galileo login:
