@@ -102,11 +102,13 @@ The Intel Galileo Case is has five different components which need assembly.  Th
 - Top Lid w/ Intel Logo
 - Case Stand
 
-The cumulative weight necessary for printing is 102.21g (@20% infill).
+The cumulative filament weight necessary for printing is 102.21g (@20% infill).
 
-Bottom Case - 61.09g
-Top Lid - 28.34g
-Case Stand - 12.78g
+- Bottom Case - 61.09g
+- Top Lid - 28.34g
+- Case Stand - 12.78g
+
+The case printed in this tutorial was printed with Polyterra PLA Blue.
 
 #### Bottom Case Assembly
 
@@ -160,6 +162,9 @@ Use electrical tape to secure the 1/4" leads to the battery terminals.  Finish b
 
 ![BatteryFinished](/images/Intel_Galileo_Gen1_Battery_Finished.jpg?raw=true "Battery Finished")
 
+Secure the battery assembly to the bottom of the case to the left of the WiFi Module.
+
+![BatteryInstallation](/images/Intel_Galileo_Gen1_Battery_Installation.jpg?raw=true "Battery Installation")
 
 #### Galileo Board Installation
 
@@ -190,12 +195,11 @@ Parts Needed:
 - (1) Printed Case Stand Component
 - (2) M3 x 10mm Bolts
 
-![GalileoStandComponents](/images/Intel_Galileo_Gen1_Stand_Components.jpg?raw=true "Case Stand Components")
+![GalileoStandComponents](/images/Intel_Galileo_Gen1_Case_Stand_Components.jpg?raw=true "Case Stand Components")
 
 Attach case stand to back of the bottom case component with the M3 x 10mm bolts.
 
-![GalileoStandInstallation](/images/Intel_Galileo_Gen1_Stand_Installation.jpg?raw=true "Case Stand Installation")
-
+![GalileoStandInstallation](/images/Intel_Galileo_Gen1_Case_Stand_Installation.jpg?raw=true "Case Stand Installation")
 
 #### Finished
 
