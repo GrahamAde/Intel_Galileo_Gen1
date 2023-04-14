@@ -9,6 +9,7 @@ This repository outlines the capabilities of the Intel Galileo (First Generation
 - [Board Specifications](#Board-Specs)
 - [Connecting to Board via RS232 Serial Cable](#Connect-Via-Serial)
 - [How to Update Board Firmware](#Update-Firmware)
+- [Printing and Constructing Intel Galileo Case](#Galileo-Case)
 - [Boot Log for SPI Image (Firmware Version 732)](#Boot-SPI-FV732)
 - [Boot Log for SPI Image (Firmware Version 1.1.0)](#Boot-SPI-FV110)
 - [Boot Log for SD Card Image (Firmware Version 1.1.0)](#Boot-SD-FV110)
@@ -84,6 +85,124 @@ Intel Galileo Firmware Updater requires JRE (Java Runtime Environment 1.6.0).
 
 #### Updating Board Firmware on Debian GNU/Linux 11 (Bullseye)
 
+
+***
+
+<h2 id="Galileo-Case">
+Printing and Constructing Intel Galileo Case
+</h2>
+
+**Notes:** All CAD (FCStd) and .STL files are located in the 'Intel Galileo Case' directory.  Use FreeCAD 0.20 to open the FCStd file. https://www.freecad.org
+
+The Intel Galileo Case is has five different components which need assembly.  They are as follows:
+
+- Bottom Case
+- WiFi Module
+- RTC Battery
+- Top Lid w/ Intel Logo
+- Case Stand
+
+The cumulative weight necessary for printing is 102.21g (@20% infill).
+
+Bottom Case - 61.09g
+Top Lid - 28.34g
+Case Stand - 12.78g
+
+#### Bottom Case Assembly
+
+Parts Needed:
+
+- (1) Printed Bottom Case Component
+- (12) M3 Threaded Knurled Inserts
+
+![BottomCaseUnfinished](/images/Intel_Galileo_Gen1_Case_Bottom_Unfinished.jpg?raw=true "Case Bottom Unfinished")
+
+To set the M3 threaded inserts, use a soldering iron set to 500F and slowly push the inserts into the holes.
+
+![BottomCaseFinished](/images/Intel_Galileo_Gen1_Case_Bottom_Finished.jpg?raw=true "Case Bottom Finished")
+
+#### WiFi Module Assembly
+
+Parts Needed:
+
+- (1) Mini-PCIe WiFi Card (Intel AC7260 used)
+- (1) Metal PCIe Half-Height Extender
+- (2) SMA Pigtail Connectors
+- (2) WiFi Antennas
+
+![WiFiComponents](/images/Intel_Galileo_Gen1_WiFi_Components.jpg?raw=true "WiFi Components")
+
+Attach SMA pigtail connectors to bottom case component.
+
+![SMALeft](/images/Intel_Galileo_Gen1_WiFi_SMA_Left.jpg?raw=true "SMA Left")
+![SMARight](/images/Intel_Galileo_Gen1_WiFi_SMA_Right.jpg?raw=true "SMA Right")
+
+Attach WiFi Module to Galileo Board and Connect SMA wires.
+
+![WiFiConstruction](/images/Intel_Galileo_Gen1_WiFi_Construction.jpg?raw=true "WiFi Construction")
+
+#### RTC Battery Assembly
+
+Parts Needed:
+
+- (1) 3V Coin Battery (CR2032 Used)
+- (2) 4" long 22 awg wires
+- (2) Female Molex Pins
+- Vinyl Electrical Tape (3M Scotch Super 88 recommended)
+
+![BatteryComponents](/images/Intel_Galileo_Gen1_Battery_Components.jpg?raw=true "Battery Components")
+
+Strip the ends of your wire approximately 1/4" on one end (battery terminal side) and 1/8" on the other end (molex pin side).  Crimp female molex pins to shorter leads.
+
+![BatteryConstruction](/images/Intel_Galileo_Gen1_Battery_Construction.jpg?raw=true "Battery Construction")
+
+Use electrical tape to secure the 1/4" leads to the battery terminals.  Finish by tightly wrapping the battery with electrical tape.
+
+![BatteryFinished](/images/Intel_Galileo_Gen1_Battery_Finished.jpg?raw=true "Battery Finished")
+
+
+#### Galileo Board Installation
+
+Parts Needed:
+
+- (1) Galileo Board w/ Attached WiFi Module
+- (1) Bottom Case Component
+- (4) Threaded Screws with Phillips Head
+
+Mount Galileo board to bottom case component to after WiFi module and RTC battery installation.
+
+![GalileoBoardInstallation](/images/Intel_Galileo_Gen1_Board_Installation.jpg?raw=true "Board Installation")
+
+#### Top Lid w/ Intel Logo
+
+Parts Needed:
+
+- (1) Printed Top Lid Component
+- (4) M3 x 6mm Bolts
+
+![GalileoFinishedNoStand1](/images/Intel_Galileo_Gen1_Case_Finished_1_No_Stand.jpg?raw=true "Case Finished 1 - No Stand")
+![GalileoFinishedNoStand2](/images/Intel_Galileo_Gen1_Case_Finished_2_No_Stand.jpg?raw=true "Case Finished 2 - No Stand")
+
+#### Case Stand Installation
+
+Parts Needed:
+
+- (1) Printed Case Stand Component
+- (2) M3 x 10mm Bolts
+
+![GalileoStandComponents](/images/Intel_Galileo_Gen1_Stand_Components.jpg?raw=true "Case Stand Components")
+
+Attach case stand to back of the bottom case component with the M3 x 10mm bolts.
+
+![GalileoStandInstallation](/images/Intel_Galileo_Gen1_Stand_Installation.jpg?raw=true "Case Stand Installation")
+
+
+#### Finished
+
+You have now made your own Intel Galileo Gen1 case!
+
+![GalileoCaseFinished1](/images/Intel_Galileo_Gen1_Case_Finished_1_With_Stand.jpg?raw=true "Case Finished 1 - With Stand")
+![GalileoCaseFinished2](/images/Intel_Galileo_Gen1_Case_Finished_2_With_Stand.jpg?raw=true "Case Finished 2 - With Stand")
 
 ***
 
